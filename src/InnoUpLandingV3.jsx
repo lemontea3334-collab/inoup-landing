@@ -301,7 +301,14 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
-                  <span className="font-normal">전단지 1,000장, </span>
+                  <span className="font-normal">전단지 1,000장,</span>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden mt-1 md:mt-1">
+                <motion.div
+                  variants={wordVariant}
+                  className="leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                >
                   <span className="font-extrabold md:text-7xl lg:text-8xl">영혼 없는 블로그 글...</span>
                 </motion.div>
               </div>
