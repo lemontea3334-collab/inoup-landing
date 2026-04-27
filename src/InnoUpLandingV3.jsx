@@ -299,26 +299,26 @@ const InnoUpLandingV3 = () => {
               <div className="overflow-hidden">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                  className="leading-[1.18] sm:leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.75rem,6.2vw+0.85rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
                   <span className="font-normal">전단지 1,000장,</span>
                 </motion.div>
               </div>
-              <div className="overflow-hidden mt-1 md:mt-1">
+              <div className="overflow-hidden mt-1.5 md:mt-1">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                  className="leading-[1.12] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.95rem,7vw+0.65rem,4.5rem)] md:text-7xl lg:text-8xl"
                 >
-                  <span className="font-extrabold md:text-7xl lg:text-8xl">영혼 없는 블로그 글...</span>
+                  <span className="font-extrabold">영혼 없는 블로그 글...</span>
                 </motion.div>
               </div>
-              <div className="overflow-hidden mt-2 md:mt-2">
+              <div className="overflow-hidden mt-2.5 md:mt-2">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                  className="leading-[1.18] sm:leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(1.75rem,6.2vw+0.85rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
                   <span className="font-normal text-white">아직도 </span>
-                  <span className="font-extrabold text-lime-400 md:text-7xl lg:text-8xl">예전 방식</span>
+                  <span className="font-extrabold text-lime-400 text-[clamp(1.95rem,7vw+0.65rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
                   <span className="font-normal text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
