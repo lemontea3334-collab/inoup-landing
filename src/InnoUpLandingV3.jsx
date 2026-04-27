@@ -307,7 +307,7 @@ const InnoUpLandingV3 = () => {
               style={{ fontSize: 'clamp(0.9rem, 3.4vw + 0.2rem, 1.65rem)', lineHeight: 1.45 }}
             >
               <EmergencyBeaconIcon />
-              <span className="min-w-0 break-words font-light tracking-tight [font-family:'Paperlogy',sans-serif]">
+              <span className="min-w-0 break-words font-semibold tracking-tight [font-family:'Paperlogy',sans-serif]">
                 [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
               </span>
             </motion.div>
@@ -319,7 +319,7 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
-                  <span className="font-thin">전단지 1,000장,</span>
+                  <span className="font-light">전단지 1,000장,</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-1.5 md:mt-1">
@@ -327,8 +327,8 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.08] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl"
                 >
-                  <span className="font-normal">영혼 없는 </span>
-                  <span className="font-thin">블로그 글...</span>
+                  <span className="font-semibold">영혼 없는 </span>
+                  <span className="font-light">블로그 글...</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-2.5 md:mt-2">
@@ -336,15 +336,15 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
-                  <span className="font-thin text-white">아직도 </span>
-                  <span className="font-normal text-lime-400 text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
-                  <span className="font-thin text-white">에 돈을 버리고 계신가요?</span>
+                  <span className="font-light text-white">아직도 </span>
+                  <span className="font-semibold text-lime-400 text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
+                  <span className="font-light text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
             </motion.div>
 
             {/* 서브 설명 */}
-            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-extralight leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all] [font-family:'Paperlogy',sans-serif]">
+            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all] [font-family:'Paperlogy',sans-serif]">
               요즘 학부모는 뻔한 홍보글은 읽지 않습니다. 의미 없는 &apos;조회수 뻥튀기&apos; 사기에서 벗어나,{' '}
               <span className="inline text-white font-light rounded-md bg-lime-500/18 px-1.5 py-1 shadow-[inset_0_0_0_1px_rgba(163,230,53,0.25)] [box-decoration-break:clone]">
                 진짜 학부모의 마음을 움직여 <span className="font-normal text-lime-200">&apos;상담 예약&apos;</span>을 잡는 이노업만의 로직

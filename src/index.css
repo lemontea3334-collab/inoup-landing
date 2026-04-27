@@ -44,18 +44,47 @@ body {
 
 /* 히어로 긴급진단 — 깜빡임 CSS 백업(프레이머 외에도 동작) */
 @keyframes hero-beacon-pulse {
-  0%, 35% { opacity: 1; transform: scale(1); }
-  40%, 48% { opacity: 0.18; transform: scale(0.88); }
-  55%, 100% { opacity: 1; transform: scale(1); }
+  0%, 22% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.15) drop-shadow(0 0 14px rgba(163, 230, 53, 0.85));
+  }
+  28%, 36% {
+    opacity: 0.12;
+    transform: scale(0.86);
+    filter: brightness(0.55) drop-shadow(0 0 4px rgba(163, 230, 53, 0.25));
+  }
+  42%, 58% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.15) drop-shadow(0 0 14px rgba(163, 230, 53, 0.85));
+  }
+  64%, 72% {
+    opacity: 0.15;
+    transform: scale(0.88);
+    filter: brightness(0.6) drop-shadow(0 0 4px rgba(163, 230, 53, 0.3));
+  }
+  78%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.15) drop-shadow(0 0 14px rgba(163, 230, 53, 0.85));
+  }
 }
 
 .hero-beacon-icon {
-  animation: hero-beacon-pulse 1.35s ease-in-out infinite;
+  animation: hero-beacon-pulse 1.5s ease-in-out infinite;
+}
+
+.hero-beacon-icon svg {
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-beacon-icon {
     animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
 
