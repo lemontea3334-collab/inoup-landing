@@ -56,7 +56,7 @@ function Marquee() {
 /* ── 숫자 카운터 ── */
 function CountUp({ to, suffix = '', prefix = '' }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const [val, setVal] = useState(0);
 
   useEffect(() => {
@@ -159,8 +159,8 @@ function HeroVisual() {
       </svg>
 
       {/* 사진 원 */}
-      <div className="relative z-10 w-52 h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-br from-lime-900/50 to-zinc-900 border border-lime-500/25 shadow-2xl flex items-center justify-center text-zinc-500 text-sm font-light">
-        [대표님 사진]
+      <div className="relative z-10 w-52 h-52 md:w-60 md:h-60 rounded-full border border-lime-500/25 shadow-2xl overflow-hidden">
+        <img src="/inoup-landing/images/profile-hero.png" alt="대표님 사진" className="w-full h-full object-cover" />
       </div>
 
       {/* 플로팅 배지들 */}
@@ -245,18 +245,18 @@ const InnoUpLandingV3 = () => {
 
       {/* ══ GNB ══ */}
       <nav className="fixed top-0 w-full bg-stone-50/95 backdrop-blur-sm z-50 border-b border-stone-200">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xl font-bold tracking-tight text-zinc-900">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+          <div className="text-base md:text-xl font-bold tracking-tight text-zinc-900">
             INNO<span className="text-lime-600">-UP</span>
-            <span className="ml-2 text-xs font-light text-zinc-400 tracking-widest uppercase">Marketing Lab</span>
+            <span className="ml-1.5 text-xs font-light text-zinc-400 tracking-widest uppercase hidden sm:inline">Marketing Lab</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-zinc-500">
             <Link to="/about" className="hover:text-lime-600 transition font-medium">소개</Link>
             <a href="#process" className="hover:text-lime-600 transition">작업방식</a>
             <a href="#cta" className="hover:text-lime-600 transition">상담문의</a>
           </div>
-          <Link to="/quiz" className="bg-lime-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-lime-600 transition">
-            무료 진단 받기
+          <Link to="/quiz" className="bg-lime-500 text-white px-3 md:px-5 py-2 rounded-full font-bold hover:bg-lime-600 transition flex-shrink-0" style={{ fontSize: '0.75rem', whiteSpace: 'nowrap' }}>
+            무료&nbsp;진단&nbsp;받기
           </Link>
         </div>
       </nav>
@@ -281,49 +281,32 @@ const InnoUpLandingV3 = () => {
             <motion.div
               variants={fadeUp}
               className="inline-flex w-fit items-center gap-3 text-lime-400 px-2 py-2 mb-8"
-              style={{ fontFamily: "'Nanum Brush Script', cursive", fontSize: '2.2rem', letterSpacing: '0.02em' }}
+              style={{ fontFamily: "'Nanum Brush Script', cursive", fontSize: 'clamp(1.55rem, 4.5vw, 2.2rem)', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}
             >
               <span className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse flex-shrink-0" />
-              대형 대행사가 말하지 않는 비밀
+              [긴급 진단] 2026년, 동네 학원 마케팅의 룰이 바뀌었습니다
             </motion.div>
 
             {/* 헤드라인 */}
             <motion.div variants={stagger} className="mb-6">
               <div className="overflow-hidden">
-                <motion.div variants={wordVariant} className="leading-[1.1] break-keep">
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-normal text-white">전단지 </span>
-                  <span className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-white">1,000장,</span>
-                </motion.div>
-              </div>
-              <div className="overflow-hidden">
-                <motion.div variants={wordVariant} className="leading-[1.1] break-keep">
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-normal text-white">인스타 광고에 </span>
-                  <span className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-white">수백만 원,</span>
+                <motion.div variants={wordVariant} className="leading-[1.15] break-keep">
+                  <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-normal text-white">전단지 1,000장, </span>
+                  <span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white">영혼 없는 블로그 글...</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-2">
-                <motion.div variants={wordVariant} className="leading-[1.1] break-keep">
-                  <span className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-lime-400">몇 통 </span>
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-normal text-white">의 전화를 </span>
-                </motion.div>
-              </div>
-              <div className="overflow-hidden">
-                <motion.div variants={wordVariant} className="leading-[1.1]">
-                  <span className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-lime-400">받으셨나요?</span>
+                <motion.div variants={wordVariant} className="leading-[1.15] break-keep">
+                  <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-normal text-white">아직도 </span>
+                  <span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-lime-400">예전 방식</span>
+                  <span className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-normal text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
             </motion.div>
 
             {/* 서브 설명 */}
             <motion.p variants={fadeUp} className="text-zinc-400 text-base mb-8 break-keep font-light leading-loose">
-              지역 1등 학원은 '광고비'가 아니라 <span className="relative inline-block">
-                <span className="text-white text-lg relative z-10"><span className="font-bold">'학부모의 검색 심리'</span><span className="font-light">를 </span><span className="font-bold">선점</span><span className="font-light">합니다.</span></span>
-                <svg className="absolute -bottom-1 left-0 w-full overflow-visible" viewBox="0 0 300 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 2,7 C 30,3 65,9 110,6 C 155,3 190,8 240,5 C 265,4 280,7 298,6" stroke="#bef264" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.9"/>
-                  <path d="M 8,8.5 C 50,6 95,9.5 150,7.5 C 200,5.5 250,8 295,7" stroke="#d9f99d" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5"/>
-                </svg>
-              </span><br />
-              이노업은 화려한 포장 대신, 전화 벨소리를 만드는 날카로운 마케팅 로직을 증명합니다.
+              요즘 학부모는 뻔한 홍보글은 읽지 않습니다. 의미 없는 &apos;조회수 뻥튀기&apos; 사기에서 벗어나, 진짜 학부모의 마음을 움직여 &apos;상담 예약&apos;을 잡는 이노업만의 로직을 확인하세요.
             </motion.p>
 
             {/* CTA 버튼 */}
@@ -409,8 +392,8 @@ const InnoUpLandingV3 = () => {
             {/* 대표 프로필 */}
             <motion.div variants={fadeUp} className="flex justify-center">
               <div className="relative">
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-lime-900/40 to-zinc-200 border-4 border-lime-500/30 shadow-2xl flex items-center justify-center text-zinc-500 text-sm">
-                  [대표님 사진]
+                <div className="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 border-lime-500/30 shadow-2xl overflow-hidden">
+                  <img src="/inoup-landing/images/profile-about.png" alt="대표님 사진" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-lime-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
                   마케팅 전략가
@@ -444,11 +427,8 @@ const InnoUpLandingV3 = () => {
               </div>
               <div className="p-6">
                 <div className="inline-block bg-lime-500/15 text-lime-400 text-xs font-bold px-3 py-1 rounded-full mb-3">키워드 전략</div>
-                <p className="text-zinc-200 text-base font-semibold mb-2">
-                  경쟁만 치열한 키워드를 버리고 'OO초 단원평가 대비' 키워드로 변경 후 문의 3배 상승
-                </p>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  "OO동 수학학원"은 하루 검색량은 많아도 경쟁이 너무 치열합니다. 실제로 학부모가 결제 직전 입력하는 틈새 키워드를 발굴해 1페이지 상위 노출을 달성했습니다.
+                  &apos;OO동 수학학원&apos;으로만 검색하는 학부모는 없습니다. &apos;중2 수학 기말 벼락치기&apos;처럼 엄마들이 밤에 고민하며 검색하는 진짜 틈새 키워드를 발굴합니다.
                 </p>
               </div>
             </motion.div>
@@ -534,23 +514,23 @@ const InnoUpLandingV3 = () => {
             {[
               {
                 tag: '키워드 전략',
-                title: '초정밀 타겟 키워드',
-                before: { label: '기존 방식', text: '"OO동 수학학원"만 타겟팅 → 경쟁 과열, 3페이지 밀려남' },
-                after:  { label: '이노업 방식', text: '학부모가 결제 직전 검색하는 틈새 키워드 → 1페이지 상위 노출' },
+                title: '[엄마들의 \'새벽 검색어\' 선점]',
+                before: { label: '기존 방식', text: '' },
+                after:  { label: '이노업 방식', text: '\'OO동 수학학원\' 같은 필수 간판 키워드 선점은 기본입니다. 여기에 결제 직전의 학부모가 밤잠 설치며 검색하는 틈새 키워드까지 싹 잡아냅니다.' },
                 result: '검색 유입 4주 내 3배↑',
               },
               {
                 tag: '카피라이팅',
-                title: '심리 기반 카피',
-                before: { label: '기존 방식', text: '"체계적 커리큘럼, 친절한 선생님" 나열 → 3초 만에 이탈' },
-                after:  { label: '이노업 방식', text: '학부모의 불안·결핍을 건드리는 카피 → 끝까지 읽고 전화' },
+                title: '[뻔한 홍보글이 무시당하는 시대, \'진심\' 번역]',
+                before: { label: '기존 방식', text: '알바생이 찍어내는 글은 학부모가 3초 만에 나갑니다.' },
+                after:  { label: '이노업 방식', text: '밤늦게까지 아이들을 챙기는 원장님의 진심을, 학부모가 감동하는 원고로 다듬습니다.' },
                 result: '블로그 체류시간 7.5배↑',
               },
               {
                 tag: '전환 설계',
-                title: '전환율(CRO) 셋팅',
-                before: { label: '기존 방식', text: '글 읽고 그냥 나가버림 → 이탈률 70%, 문의 0건' },
-                after:  { label: '이노업 방식', text: '읽는 순간 전화 버튼을 누르도록 동선 설계 → 전환율 3배' },
+                title: '[조회수가 줄어도 \'전화\'는 더 많이 오게 셋팅]',
+                before: { label: '기존 방식', text: '' },
+                after:  { label: '이노업 방식', text: '방문자가 줄었다고 불안해하실 필요 없습니다. 원장님의 글에 감동한 10명의 진짜 학부모가 고민 없이 바로 [전화 상담] 버튼을 누르도록 완벽한 동선을 설계합니다.' },
                 result: '월평균 신규 문의 12건↑',
               },
             ].map(({ tag, title, before, after, result }, i) => (
@@ -641,13 +621,13 @@ const InnoUpLandingV3 = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white">Portfolio</h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {portfolio.map(({ label, tag, result, icon: Icon, accent, desc }, i) => {
               const c = portfolioCards[i];
               return (
                 <motion.div
                   key={label}
-                  className={`${c.bg} border ${c.border} rounded-2xl p-6 flex flex-col justify-between aspect-square cursor-pointer group overflow-hidden relative shadow-sm`}
+                  className={`${c.bg} border ${c.border} rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[200px] sm:aspect-square cursor-pointer group overflow-hidden relative shadow-sm`}
                   initial={{ opacity: 0, scale: 0.96 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -787,8 +767,7 @@ const InnoUpLandingV3 = () => {
             </motion.h2>
 
             <motion.p variants={fadeUp} className="text-zinc-400 text-lg leading-loose mb-10">
-              현재 우리 학원의 마케팅 상태는 몇 등급일까요?<br />
-              단 3분 만에 끝나는 무료 진단 테스트로 확인해 보세요.
+              시대가 변했습니다. 대형 대행사도 모르는 우리 동네 맞춤형 마케팅 정답, 단 3분 만에 무료로 진단해 드립니다.
             </motion.p>
 
             {/* 혜택 목록 */}
@@ -814,7 +793,7 @@ const InnoUpLandingV3 = () => {
                 to="/quiz"
                 className="group relative inline-flex items-center gap-3 bg-yellow-400 text-neutral-950 font-black text-lg py-5 px-12 rounded-2xl shadow-2xl hover:bg-yellow-300 transition duration-300 overflow-hidden"
               >
-                <span className="relative z-10">무료 진단 테스트 시작하기</span>
+                <span className="relative z-10">무료 진단 신청하기</span>
                 <span className="relative z-10 text-xl">→</span>
                 <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
               </Link>
