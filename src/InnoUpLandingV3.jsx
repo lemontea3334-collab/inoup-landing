@@ -288,11 +288,11 @@ const InnoUpLandingV3 = () => {
             <motion.div
               variants={fadeUp}
               className="inline-flex w-full max-w-full sm:w-fit items-start sm:items-center gap-2 sm:gap-3 text-lime-400 px-1 sm:px-2 py-2 mb-6 sm:mb-8"
-              style={{ fontFamily: "'Nanum Brush Script', cursive", fontSize: 'clamp(0.95rem, 3.6vw, 2.2rem)', letterSpacing: '0.02em', lineHeight: 1.35 }}
+              style={{ fontFamily: "'Nanum Brush Script', cursive", fontSize: 'clamp(1.2rem, 5.2vw + 0.35rem, 2.35rem)', letterSpacing: '0.02em', lineHeight: 1.35 }}
             >
               <span className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse flex-shrink-0 mt-1.5 sm:mt-0" />
               <span className="min-w-0 break-words">
-                [긴급 진단] 2026년, 동네 학원 마케팅의 룰이 바뀌었습니다
+                [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
               </span>
             </motion.div>
 
@@ -311,7 +311,8 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.08] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl"
                 >
-                  <span className="font-extrabold">영혼 없는 블로그 글...</span>
+                  <span className="font-extrabold">영혼 없는 </span>
+                  <span className="font-normal">블로그 글...</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-2.5 md:mt-2">
