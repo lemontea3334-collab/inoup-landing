@@ -288,11 +288,12 @@ const InnoUpLandingV3 = () => {
             <motion.div
               variants={fadeUp}
               className="inline-flex w-full max-w-full sm:w-fit items-start sm:items-center gap-2 sm:gap-3 text-lime-400 px-1 sm:px-2 py-2 mb-6 sm:mb-8"
-              style={{ fontFamily: "'Nanum Brush Script', cursive", fontSize: 'clamp(1.2rem, 5.2vw + 0.35rem, 2.35rem)', letterSpacing: '0.02em', lineHeight: 1.35 }}
+              style={{ fontSize: 'clamp(1.2rem, 5.2vw + 0.35rem, 2.35rem)', lineHeight: 1.35 }}
             >
               <span className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse flex-shrink-0 mt-1.5 sm:mt-0" />
               <span className="min-w-0 break-words">
-                [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
+                <span className="[font-family:'Nanum_Brush_Script',cursive] tracking-wide">[긴급 진단] </span>
+                <span className="[font-family:'MaruBuri',serif] font-bold tracking-[-0.02em] sm:tracking-normal">동네 학원 마케팅의 룰이 바뀌었습니다</span>
               </span>
             </motion.div>
 
