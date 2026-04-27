@@ -117,13 +117,13 @@ function FaqItemDark({ q, a, index }) {
 ──────────────────────────────────────── */
 function HeroVisual() {
   const badges = [
-    { label: '문의',    value: '3배↑',   note: '콘텐츠 셋팅 4주 후',  className: 'top-4 -right-4 float-a',    bg: 'bg-lime-400',    labelC: 'text-lime-900', valueC: 'text-lime-950', noteC: 'text-lime-800' },
-    { label: '체류시간', value: '7.5배↑', note: '카피라이팅 적용 후',  className: 'bottom-8 -left-8 float-b',  bg: 'bg-white',       labelC: 'text-zinc-400', valueC: 'text-zinc-900', noteC: 'text-zinc-400' },
-    { label: '이번달',  value: '5자리',  note: '잔여 슬롯',           className: '-bottom-4 right-10 float-c', bg: 'bg-yellow-400',  labelC: 'text-yellow-900', valueC: 'text-yellow-950', noteC: 'text-yellow-800' },
+    { label: '문의',    value: '3배↑',   note: '콘텐츠 셋팅 4주 후',  className: 'top-1 -right-1 sm:top-3 sm:-right-2 md:top-4 md:-right-4 float-a',    bg: 'bg-lime-400',    labelC: 'text-lime-900', valueC: 'text-lime-950', noteC: 'text-lime-800' },
+    { label: '체류시간', value: '7.5배↑', note: '카피라이팅 적용 후',  className: 'bottom-4 -left-2 sm:bottom-6 sm:-left-4 md:bottom-8 md:-left-8 float-b',  bg: 'bg-white',       labelC: 'text-zinc-400', valueC: 'text-zinc-900', noteC: 'text-zinc-400' },
+    { label: '이번달',  value: '5자리',  note: '잔여 슬롯',           className: '-bottom-1 right-4 sm:-bottom-2 sm:right-6 md:-bottom-4 md:right-10 float-c', bg: 'bg-yellow-400',  labelC: 'text-yellow-900', valueC: 'text-yellow-950', noteC: 'text-yellow-800' },
   ];
 
   return (
-    <div className="relative flex items-center justify-center aspect-square w-[min(20rem,calc(100vw-2rem))] md:w-96 mx-auto shrink-0">
+    <div className="relative flex items-center justify-center aspect-square w-[min(13.75rem,calc(100vw-2.5rem))] sm:w-[min(17.5rem,calc(100vw-2rem))] md:w-96 mx-auto shrink-0 max-w-[85vw] sm:max-w-none">
 
       {/* 글로우 */}
       <div className="glow-orb absolute inset-0 rounded-full bg-lime-500/20 blur-3xl" />
@@ -159,7 +159,7 @@ function HeroVisual() {
       </svg>
 
       {/* 사진 원 */}
-      <div className="relative z-10 w-52 h-52 md:w-60 md:h-60 rounded-full border border-lime-500/25 shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-[9.25rem] h-[9.25rem] sm:w-48 sm:h-48 md:w-60 md:h-60 rounded-full border border-lime-500/25 shadow-2xl overflow-hidden">
         <img src="/inoup-landing/images/profile-hero.png" alt="대표님 사진" className="w-full h-full object-cover" />
       </div>
 
@@ -167,11 +167,11 @@ function HeroVisual() {
       {badges.map(({ label, value, note, className, bg, labelC, valueC, noteC }) => (
         <div
           key={label}
-          className={`absolute z-20 ${bg} rounded-2xl px-4 py-3 shadow-2xl ${className}`}
+          className={`absolute z-20 ${bg} rounded-xl sm:rounded-2xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-3 shadow-lg sm:shadow-2xl max-w-[9.5rem] sm:max-w-none ${className}`}
         >
-          <div className={`${labelC} text-[11px] font-semibold leading-none mb-1`}>{label}</div>
-          <div className={`${valueC} font-extrabold text-xl leading-none`}>{value}</div>
-          <div className={`${noteC} text-[10px] font-light mt-1 leading-none`}>{note}</div>
+          <div className={`${labelC} text-[9px] sm:text-[10px] md:text-[11px] font-semibold leading-none mb-0.5 sm:mb-1`}>{label}</div>
+          <div className={`${valueC} font-extrabold text-sm sm:text-lg md:text-xl leading-none`}>{value}</div>
+          <div className={`${noteC} text-[8px] sm:text-[9px] md:text-[10px] font-light mt-0.5 sm:mt-1 leading-tight sm:leading-none`}>{note}</div>
         </div>
       ))}
 
@@ -184,7 +184,7 @@ function HeroVisual() {
         return (
           <div
             key={deg}
-            className="absolute w-2 h-2 bg-lime-500 rounded-full -translate-x-1/2 -translate-y-1/2"
+            className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-lime-500 rounded-full -translate-x-1/2 -translate-y-1/2"
             style={{
               left: `calc(50% + ${dx}%)`,
               top:  `calc(50% + ${dy}%)`,
@@ -357,7 +357,7 @@ const InnoUpLandingV3 = () => {
 
           {/* ── 오비탈 비주얼 (아래, 항상 텍스트 아래 중앙) ── */}
           <motion.div
-            className="flex w-full min-w-0 justify-center items-center pt-2 pb-2"
+            className="flex w-full min-w-0 justify-center items-center pt-1 pb-1 sm:pt-2 sm:pb-2"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.25 }}
