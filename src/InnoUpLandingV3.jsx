@@ -117,13 +117,14 @@ function FaqItemDark({ q, a, index }) {
 ──────────────────────────────────────── */
 function HeroVisual() {
   const badges = [
-    { label: '문의',    value: '3배↑',   note: '콘텐츠 셋팅 4주 후',  className: 'top-1 -right-1 sm:top-3 sm:-right-2 md:top-4 md:-right-4 float-a',    bg: 'bg-lime-400',    labelC: 'text-lime-900', valueC: 'text-lime-950', noteC: 'text-lime-800' },
-    { label: '체류시간', value: '7.5배↑', note: '카피라이팅 적용 후',  className: 'bottom-4 -left-2 sm:bottom-6 sm:-left-4 md:bottom-8 md:-left-8 float-b',  bg: 'bg-white',       labelC: 'text-zinc-400', valueC: 'text-zinc-900', noteC: 'text-zinc-400' },
-    { label: '이번달',  value: '5자리',  note: '잔여 슬롯',           className: '-bottom-1 right-4 sm:-bottom-2 sm:right-6 md:-bottom-4 md:right-10 float-c', bg: 'bg-yellow-400',  labelC: 'text-yellow-900', valueC: 'text-yellow-950', noteC: 'text-yellow-800' },
+    { label: '문의',    value: '3배↑',   note: '콘텐츠 셋팅 4주 후',  className: 'top-2 -right-2 sm:top-4 sm:-right-4 float-a',    bg: 'bg-lime-400',    labelC: 'text-lime-900', valueC: 'text-lime-950', noteC: 'text-lime-800' },
+    { label: '체류시간', value: '7.5배↑', note: '카피라이팅 적용 후',  className: 'bottom-6 -left-3 sm:bottom-8 sm:-left-8 float-b',  bg: 'bg-white',       labelC: 'text-zinc-400', valueC: 'text-zinc-900', noteC: 'text-zinc-400' },
+    { label: '이번달',  value: '5자리',  note: '잔여 슬롯',           className: '-bottom-2 right-6 sm:-bottom-4 sm:right-10 float-c', bg: 'bg-yellow-400',  labelC: 'text-yellow-900', valueC: 'text-yellow-950', noteC: 'text-yellow-800' },
   ];
 
   return (
-    <div className="relative flex items-center justify-center aspect-square w-[min(13.75rem,calc(100vw-2.5rem))] sm:w-[min(17.5rem,calc(100vw-2rem))] md:w-96 mx-auto shrink-0 max-w-[85vw] sm:max-w-none">
+    <div className="relative mx-auto shrink-0 overflow-visible py-5 px-4 sm:py-7 sm:px-6 md:py-4 md:px-5">
+      <div className="relative flex items-center justify-center aspect-square w-[min(16rem,calc(100vw-2.75rem))] sm:w-[min(19rem,calc(100vw-2rem))] md:w-96 mx-auto overflow-visible">
 
       {/* 글로우 */}
       <div className="glow-orb absolute inset-0 rounded-full bg-lime-500/20 blur-3xl" />
@@ -159,15 +160,15 @@ function HeroVisual() {
       </svg>
 
       {/* 사진 원 */}
-      <div className="relative z-10 w-[9.25rem] h-[9.25rem] sm:w-48 sm:h-48 md:w-60 md:h-60 rounded-full border border-lime-500/25 shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full border border-lime-500/25 shadow-2xl overflow-hidden">
         <img src="/inoup-landing/images/profile-hero.png" alt="대표님 사진" className="w-full h-full object-cover" />
       </div>
 
-      {/* 플로팅 배지들 */}
+      {/* 플로팅 배지들 — orbit 밖으로 나가도 padding 영역에서 보이도록 z-30 */}
       {badges.map(({ label, value, note, className, bg, labelC, valueC, noteC }) => (
         <div
           key={label}
-          className={`absolute z-20 ${bg} rounded-xl sm:rounded-2xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-3 shadow-lg sm:shadow-2xl max-w-[9.5rem] sm:max-w-none ${className}`}
+          className={`absolute z-30 ${bg} rounded-xl sm:rounded-2xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-3 shadow-lg sm:shadow-2xl max-w-[10rem] sm:max-w-none ring-1 ring-black/10 ${className}`}
         >
           <div className={`${labelC} text-[9px] sm:text-[10px] md:text-[11px] font-semibold leading-none mb-0.5 sm:mb-1`}>{label}</div>
           <div className={`${valueC} font-extrabold text-sm sm:text-lg md:text-xl leading-none`}>{value}</div>
@@ -175,7 +176,7 @@ function HeroVisual() {
         </div>
       ))}
 
-      {/* 코너 장식 점 — 컨테이너 크기에 비례 (viewBox 400 기준 r=185 → 반지름 46.25%) */}
+      {/* 궤도 위 장식 점(네모 느낌: 작은 라운드 스퀘어) */}
       {[0, 90, 180, 270].map((deg) => {
         const rad = (deg * Math.PI) / 180;
         const orbitPct = (185 / 400) * 100;
@@ -184,7 +185,7 @@ function HeroVisual() {
         return (
           <div
             key={deg}
-            className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-lime-500 rounded-full -translate-x-1/2 -translate-y-1/2"
+            className="absolute z-[25] w-2 h-2 sm:w-2.5 sm:h-2.5 bg-lime-400 rounded-[3px] shadow-[0_0_8px_rgba(163,230,53,0.9)] -translate-x-1/2 -translate-y-1/2"
             style={{
               left: `calc(50% + ${dx}%)`,
               top:  `calc(50% + ${dy}%)`,
@@ -192,6 +193,7 @@ function HeroVisual() {
           />
         );
       })}
+      </div>
     </div>
   );
 }
@@ -268,7 +270,7 @@ const InnoUpLandingV3 = () => {
       </nav>
 
       {/* ══ HERO — 다크 + 그리드 ══ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-neutral-950" style={gridBg}>
+      <section className="relative min-h-screen flex items-center overflow-x-hidden overflow-y-visible bg-neutral-950" style={gridBg}>
 
         {/* 배경 글로우 오브 */}
         <div className="glow-orb absolute -top-60 -left-60 w-[700px] h-[700px] bg-lime-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -277,10 +279,10 @@ const InnoUpLandingV3 = () => {
         {/* 우측 장식 사선 */}
         <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-lime-500/20 to-transparent pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-16 w-full min-w-0 flex flex-col items-center gap-10 lg:gap-14">
+        <div className="relative max-w-7xl mx-auto px-3 sm:px-6 pt-28 sm:pt-32 pb-20 sm:pb-16 w-full min-w-0 flex flex-col items-center gap-10 lg:gap-14">
 
           {/* ── 카피 (위) ── */}
-          <motion.div className="flex flex-col min-w-0 w-full max-w-3xl mx-auto" variants={stagger} initial="hidden" animate="show">
+          <motion.div className="flex flex-col min-w-0 w-full max-w-3xl max-sm:max-w-full mx-auto" variants={stagger} initial="hidden" animate="show">
 
             {/* 뱃지 */}
             <motion.div
@@ -299,7 +301,7 @@ const InnoUpLandingV3 = () => {
               <div className="overflow-hidden">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.18] sm:leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.75rem,6.2vw+0.85rem,4.5rem)] md:text-6xl lg:text-7xl"
+                  className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
                   <span className="font-normal">전단지 1,000장,</span>
                 </motion.div>
@@ -307,7 +309,7 @@ const InnoUpLandingV3 = () => {
               <div className="overflow-hidden mt-1.5 md:mt-1">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.12] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.95rem,7vw+0.65rem,4.5rem)] md:text-7xl lg:text-8xl"
+                  className="leading-[1.08] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl"
                 >
                   <span className="font-extrabold">영혼 없는 블로그 글...</span>
                 </motion.div>
@@ -315,10 +317,10 @@ const InnoUpLandingV3 = () => {
               <div className="overflow-hidden mt-2.5 md:mt-2">
                 <motion.div
                   variants={wordVariant}
-                  className="leading-[1.18] sm:leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(1.75rem,6.2vw+0.85rem,4.5rem)] md:text-6xl lg:text-7xl"
+                  className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
                   <span className="font-normal text-white">아직도 </span>
-                  <span className="font-extrabold text-lime-400 text-[clamp(1.95rem,7vw+0.65rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
+                  <span className="font-extrabold text-lime-400 text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
                   <span className="font-normal text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
@@ -331,11 +333,11 @@ const InnoUpLandingV3 = () => {
 
             {/* CTA 버튼 */}
                         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 min-w-0">
-                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-flex">
+                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-bold text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-flex">
                             <span className="relative z-10">우리 학원 무료 진단하기</span>
                             <span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                           </Link>
-                          <a href="#process" className="bg-white/5 text-white font-semibold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-block">
+                          <a href="#process" className="bg-white/5 text-white font-semibold text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-block">
                             작업 방식 보기 →
                           </a>
                         </motion.div>
@@ -357,7 +359,7 @@ const InnoUpLandingV3 = () => {
 
           {/* ── 오비탈 비주얼 (아래, 항상 텍스트 아래 중앙) ── */}
           <motion.div
-            className="flex w-full min-w-0 justify-center items-center pt-1 pb-1 sm:pt-2 sm:pb-2"
+            className="flex w-full min-w-0 justify-center items-center overflow-visible pt-2 pb-10 sm:pb-8 sm:pt-2"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.25 }}
