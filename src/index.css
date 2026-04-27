@@ -4,6 +4,8 @@
 body {
   margin: 0;
   font-family: "Paperlogy", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
 }
 
 #root {
@@ -38,6 +40,23 @@ body {
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.15; transform: scale(1); }
   50%       { opacity: 0.28; transform: scale(1.08); }
+}
+
+/* 히어로 긴급진단 — 깜빡임 CSS 백업(프레이머 외에도 동작) */
+@keyframes hero-beacon-pulse {
+  0%, 35% { opacity: 1; transform: scale(1); }
+  40%, 48% { opacity: 0.18; transform: scale(0.88); }
+  55%, 100% { opacity: 1; transform: scale(1); }
+}
+
+.hero-beacon-icon {
+  animation: hero-beacon-pulse 1.35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-beacon-icon {
+    animation: none;
+  }
 }
 
 .spin-slow     { animation: spin-slow     30s linear infinite; }

@@ -2,10 +2,26 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import {
-  Compass, Feather, Zap,
+  Compass, Feather, Zap, Siren,
   Telescope, BarChart3, FileText, MapPin, KeyRound, Gem,
   GraduationCap, Briefcase,
 } from 'lucide-react';
+
+/* 긴급 진단 뱃지 — 선형 Siren + 큰 고정 크기(동그라미로 오인 방지) + CSS 깜빡임 */
+function EmergencyBeaconIcon() {
+  return (
+    <span
+      className="hero-beacon-icon inline-flex flex-shrink-0 mt-0.5 sm:mt-0 items-center justify-center text-lime-400"
+      aria-hidden
+    >
+      <Siren
+        className="w-10 h-10 sm:w-11 sm:h-11 drop-shadow-[0_0_12px_rgba(163,230,53,0.65)]"
+        strokeWidth={2.25}
+        aria-hidden
+      />
+    </span>
+  );
+}
 
 /* ── 공통 variants ── */
 const fadeUp = {
@@ -290,8 +306,8 @@ const InnoUpLandingV3 = () => {
               className="inline-flex w-full max-w-full sm:w-fit items-start sm:items-center gap-2 sm:gap-3 text-lime-400 px-1 sm:px-2 py-2 mb-6 sm:mb-8"
               style={{ fontSize: 'clamp(0.9rem, 3.4vw + 0.2rem, 1.65rem)', lineHeight: 1.45 }}
             >
-              <span className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse flex-shrink-0 mt-1 sm:mt-0" />
-              <span className="min-w-0 break-words font-semibold tracking-tight [font-family:'Paperlogy',sans-serif]">
+              <EmergencyBeaconIcon />
+              <span className="min-w-0 break-words font-light tracking-tight [font-family:'Paperlogy',sans-serif]">
                 [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
               </span>
             </motion.div>
@@ -303,7 +319,7 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
-                  <span className="font-normal">전단지 1,000장,</span>
+                  <span className="font-thin">전단지 1,000장,</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-1.5 md:mt-1">
@@ -311,8 +327,8 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.08] sm:leading-[1.18] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl"
                 >
-                  <span className="font-extrabold">영혼 없는 </span>
-                  <span className="font-normal">블로그 글...</span>
+                  <span className="font-normal">영혼 없는 </span>
+                  <span className="font-thin">블로그 글...</span>
                 </motion.div>
               </div>
               <div className="overflow-hidden mt-2.5 md:mt-2">
@@ -320,28 +336,28 @@ const InnoUpLandingV3 = () => {
                   variants={wordVariant}
                   className="leading-[1.15] sm:leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(2rem,8vw+1rem,4.5rem)] md:text-6xl lg:text-7xl"
                 >
-                  <span className="font-normal text-white">아직도 </span>
-                  <span className="font-extrabold text-lime-400 text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
-                  <span className="font-normal text-white">에 돈을 버리고 계신가요?</span>
+                  <span className="font-thin text-white">아직도 </span>
+                  <span className="font-normal text-lime-400 text-[clamp(2.15rem,9vw+0.85rem,4.5rem)] md:text-7xl lg:text-8xl">예전 방식</span>
+                  <span className="font-thin text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
             </motion.div>
 
             {/* 서브 설명 */}
-            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all] [font-family:'Paperlogy',sans-serif]">
+            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-extralight leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all] [font-family:'Paperlogy',sans-serif]">
               요즘 학부모는 뻔한 홍보글은 읽지 않습니다. 의미 없는 &apos;조회수 뻥튀기&apos; 사기에서 벗어나,{' '}
-              <span className="inline text-white font-medium rounded-md bg-lime-500/18 px-1.5 py-1 shadow-[inset_0_0_0_1px_rgba(163,230,53,0.25)] [box-decoration-break:clone]">
-                진짜 학부모의 마음을 움직여 <span className="font-bold text-lime-200">&apos;상담 예약&apos;</span>을 잡는 이노업만의 로직
+              <span className="inline text-white font-light rounded-md bg-lime-500/18 px-1.5 py-1 shadow-[inset_0_0_0_1px_rgba(163,230,53,0.25)] [box-decoration-break:clone]">
+                진짜 학부모의 마음을 움직여 <span className="font-normal text-lime-200">&apos;상담 예약&apos;</span>을 잡는 이노업만의 로직
               </span>을 확인하세요.
             </motion.p>
 
             {/* CTA 버튼 */}
                         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 min-w-0">
-                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-bold text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-flex">
+                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-medium text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-flex">
                             <span className="relative z-10">우리 학원 무료 진단하기</span>
                             <span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                           </Link>
-                          <a href="#process" className="bg-white/5 text-white font-semibold text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-block">
+                          <a href="#process" className="bg-white/5 text-white font-normal text-base sm:text-base py-4 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-block">
                             작업 방식 보기 →
                           </a>
                         </motion.div>
@@ -356,7 +372,7 @@ const InnoUpLandingV3 = () => {
                 ))}
               </div>
               <div className="text-zinc-300 text-sm leading-snug min-w-0 [word-break:keep-all]">
-                현재 <span className="text-lime-400 font-bold">학원·교습소·교육업체</span> 등 이노업과 파트너십 중
+                현재 <span className="text-lime-400 font-medium">학원·교습소·교육업체</span> 등 이노업과 파트너십 중
               </div>
             </motion.div>
           </motion.div>
