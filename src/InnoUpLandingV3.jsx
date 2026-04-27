@@ -291,7 +291,7 @@ const InnoUpLandingV3 = () => {
               style={{ fontSize: 'clamp(0.9rem, 3.4vw + 0.2rem, 1.65rem)', lineHeight: 1.45 }}
             >
               <span className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse flex-shrink-0 mt-1 sm:mt-0" />
-              <span className="min-w-0 break-words [font-family:'MaruBuri',serif] font-semibold italic tracking-[-0.015em]">
+              <span className="min-w-0 break-words font-semibold tracking-tight [font-family:'Paperlogy',sans-serif]">
                 [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
               </span>
             </motion.div>
@@ -328,18 +328,11 @@ const InnoUpLandingV3 = () => {
             </motion.div>
 
             {/* 서브 설명 */}
-            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all]">
+            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all] [font-family:'Paperlogy',sans-serif]">
               요즘 학부모는 뻔한 홍보글은 읽지 않습니다. 의미 없는 &apos;조회수 뻥튀기&apos; 사기에서 벗어나,{' '}
-              <span className="relative inline-block">
-                <span className="text-white relative z-10 font-normal">
-                  진짜 학부모의 마음을 움직여 <span className="font-bold">&apos;상담 예약&apos;</span>을 잡는 이노업만의 로직
-                </span>
-                <svg className="absolute -bottom-1 left-0 w-full min-w-[12rem] h-3 overflow-visible pointer-events-none" viewBox="0 0 320 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M 2,7 C 40,3 90,9 140,6 C 190,3 230,8 280,5 C 300,4 312,7 318,6" stroke="#bef264" strokeWidth="4" strokeLinecap="round" fill="none" opacity="0.9" />
-                  <path d="M 8,8.5 C 55,6 110,9.5 170,7.5 C 220,5.5 270,8 315,7" stroke="#d9f99d" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5" />
-                </svg>
-              </span>
-              을 확인하세요.
+              <span className="inline text-white font-medium rounded-md bg-lime-500/18 px-1.5 py-1 shadow-[inset_0_0_0_1px_rgba(163,230,53,0.25)] [box-decoration-break:clone]">
+                진짜 학부모의 마음을 움직여 <span className="font-bold text-lime-200">&apos;상담 예약&apos;</span>을 잡는 이노업만의 로직
+              </span>을 확인하세요.
             </motion.p>
 
             {/* CTA 버튼 */}
