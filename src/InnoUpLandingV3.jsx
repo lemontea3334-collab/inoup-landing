@@ -16,7 +16,7 @@ function EmergencyBeaconIcon() {
     >
       <Siren
         className="w-10 h-10 sm:w-11 sm:h-11 drop-shadow-[0_0_12px_rgba(163,230,53,0.65)]"
-        strokeWidth={2.25}
+        strokeWidth={1.65}
         aria-hidden
       />
     </span>
@@ -307,8 +307,9 @@ const InnoUpLandingV3 = () => {
               style={{ fontSize: 'clamp(0.9rem, 3.4vw + 0.2rem, 1.65rem)', lineHeight: 1.45 }}
             >
               <EmergencyBeaconIcon />
-              <span className="min-w-0 break-words font-semibold tracking-tight [font-family:'Paperlogy',sans-serif]">
-                [긴급 진단] 동네 학원 마케팅의 룰이 바뀌었습니다
+              <span className="min-w-0 break-words tracking-tight [font-family:'Paperlogy',sans-serif]">
+                <span className="font-semibold">[긴급 진단]</span>{' '}
+                <span className="font-normal text-lime-400/90">동네 학원 마케팅의 룰이 바뀌었습니다</span>
               </span>
             </motion.div>
 
