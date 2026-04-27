@@ -91,7 +91,7 @@ function FaqItemDark({ q, a, index }) {
         onClick={() => setOpen(!open)}
         className="w-full flex justify-between items-center py-5 text-left text-white font-medium hover:text-lime-400 transition"
       >
-        <span className="pr-4 text-sm sm:text-base break-words">{q}</span>
+        <span className="pr-4 text-sm sm:text-base text-left [word-break:keep-all]">{q}</span>
         <span className={`text-xl text-lime-400 flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-45' : ''}`}>+</span>
       </button>
       <AnimatePresence initial={false}>
@@ -123,7 +123,7 @@ function HeroVisual() {
   ];
 
   return (
-    <div className="relative flex items-center justify-center w-[min(100%,17.5rem)] h-[min(100%,17.5rem)] sm:w-80 sm:h-80 sm:max-w-none md:w-96 md:h-96 mx-auto">
+    <div className="relative flex items-center justify-center aspect-square w-[min(20rem,calc(100vw-2rem))] md:w-96 mx-auto shrink-0">
 
       {/* 글로우 */}
       <div className="glow-orb absolute inset-0 rounded-full bg-lime-500/20 blur-3xl" />
@@ -175,17 +175,23 @@ function HeroVisual() {
         </div>
       ))}
 
-      {/* 코너 장식 점 */}
-      {[0, 90, 180, 270].map((deg) => (
-        <div
-          key={deg}
-          className="absolute w-2 h-2 bg-lime-500 rounded-full"
-          style={{
-            top:  `calc(50% + ${Math.sin((deg * Math.PI) / 180) * 185}px - 4px)`,
-            left: `calc(50% + ${Math.cos((deg * Math.PI) / 180) * 185}px - 4px)`,
-          }}
-        />
-      ))}
+      {/* 코너 장식 점 — 컨테이너 크기에 비례 (viewBox 400 기준 r=185 → 반지름 46.25%) */}
+      {[0, 90, 180, 270].map((deg) => {
+        const rad = (deg * Math.PI) / 180;
+        const orbitPct = (185 / 400) * 100;
+        const dx = Math.cos(rad) * orbitPct;
+        const dy = Math.sin(rad) * orbitPct;
+        return (
+          <div
+            key={deg}
+            className="absolute w-2 h-2 bg-lime-500 rounded-full -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: `calc(50% + ${dx}%)`,
+              top:  `calc(50% + ${dy}%)`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -228,9 +234,9 @@ const portfolioCards = [
 /* ── 섹션 라벨 공통 ── */
 function SectionLabel({ text, dark = false }) {
   return (
-    <div className={`inline-flex items-start sm:items-center gap-2 mb-3 max-w-full ${dark ? 'text-lime-400' : 'text-lime-600'}`}>
-      <span className="w-3 h-3 bg-lime-500 rounded-sm rotate-45 flex-shrink-0 mt-0.5 sm:mt-0" />
-      <span className="font-semibold text-[11px] sm:text-sm tracking-wide sm:tracking-widest uppercase leading-snug break-words text-left">{text}</span>
+    <div className={`inline-flex items-center gap-2 mb-3 max-w-full ${dark ? 'text-lime-400' : 'text-lime-600'}`}>
+      <span className="w-3 h-3 bg-lime-500 rounded-sm rotate-45 flex-shrink-0" />
+      <span className="font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest uppercase text-left [word-break:keep-all]">{text}</span>
     </div>
   );
 }
@@ -241,7 +247,7 @@ function SectionLabel({ text, dark = false }) {
 const InnoUpLandingV3 = () => {
 
   return (
-    <div className="leading-relaxed overflow-x-hidden">
+    <div className="leading-relaxed min-w-0">
 
       {/* ══ GNB ══ */}
       <nav className="fixed top-0 w-full bg-stone-50/95 backdrop-blur-sm z-50 border-b border-stone-200">
@@ -268,14 +274,13 @@ const InnoUpLandingV3 = () => {
         <div className="glow-orb absolute -top-60 -left-60 w-[700px] h-[700px] bg-lime-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="glow-orb absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow-400/8 rounded-full blur-3xl pointer-events-none" style={{ animationDelay: '2.5s' }} />
 
-        {/* 우측 상단 장식 사선 */}
+        {/* 우측 장식 사선 */}
         <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-lime-500/20 to-transparent pointer-events-none" />
-        <div className="absolute top-0 left-1/2 w-px h-40 bg-gradient-to-b from-lime-500/30 to-transparent pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-16 w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-16 w-full min-w-0 flex flex-col items-center gap-10 lg:gap-14">
 
-          {/* ── 왼쪽 콘텐츠 ── */}
-          <motion.div className="flex flex-col" variants={stagger} initial="hidden" animate="show">
+          {/* ── 카피 (위) ── */}
+          <motion.div className="flex flex-col min-w-0 w-full max-w-3xl mx-auto" variants={stagger} initial="hidden" animate="show">
 
             {/* 뱃지 */}
             <motion.div
@@ -290,44 +295,46 @@ const InnoUpLandingV3 = () => {
             </motion.div>
 
             {/* 헤드라인 */}
-            <motion.div variants={stagger} className="mb-6">
+            <motion.div variants={stagger} className="mb-6 min-w-0">
               <div className="overflow-hidden">
-                <motion.div variants={wordVariant} className="leading-[1.18] sm:leading-[1.15] text-white">
-                  <span className="block sm:inline text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-normal">전단지 1,000장,</span>{' '}
-                  <span className="block sm:inline mt-1 sm:mt-0 text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">
-                    영혼 없는 블로그 글...
-                  </span>
+                <motion.div
+                  variants={wordVariant}
+                  className="leading-[1.2] md:leading-[1.15] text-white [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                >
+                  <span className="font-normal">전단지 1,000장, </span>
+                  <span className="font-extrabold md:text-7xl lg:text-8xl">영혼 없는 블로그 글...</span>
                 </motion.div>
               </div>
-              <div className="overflow-hidden mt-3 sm:mt-2">
-                <motion.div variants={wordVariant} className="leading-[1.18] sm:leading-[1.15]">
-                  <span className="block sm:inline text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-normal text-white">아직도 </span>
-                  <span className="block sm:inline text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-lime-400">예전 방식</span>
-                  <span className="block sm:inline mt-1 sm:mt-0 text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-normal text-white">
-                    에 돈을 버리고 계신가요?
-                  </span>
+              <div className="overflow-hidden mt-2 md:mt-2">
+                <motion.div
+                  variants={wordVariant}
+                  className="leading-[1.2] md:leading-[1.15] [word-break:keep-all] text-[clamp(1.35rem,4.2vw+0.6rem,4.5rem)] md:text-6xl lg:text-7xl"
+                >
+                  <span className="font-normal text-white">아직도 </span>
+                  <span className="font-extrabold text-lime-400 md:text-7xl lg:text-8xl">예전 방식</span>
+                  <span className="font-normal text-white">에 돈을 버리고 계신가요?</span>
                 </motion.div>
               </div>
             </motion.div>
 
             {/* 서브 설명 */}
-            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose break-words">
+            <motion.p variants={fadeUp} className="text-zinc-400 text-[0.95rem] sm:text-base mb-8 font-light leading-relaxed sm:leading-loose min-w-0 [word-break:keep-all]">
               요즘 학부모는 뻔한 홍보글은 읽지 않습니다. 의미 없는 &apos;조회수 뻥튀기&apos; 사기에서 벗어나, 진짜 학부모의 마음을 움직여 &apos;상담 예약&apos;을 잡는 이노업만의 로직을 확인하세요.
             </motion.p>
 
             {/* CTA 버튼 */}
-                        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8">
-                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center inline-flex justify-center">
+                        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 min-w-0">
+                          <Link to="/quiz" className="group relative overflow-hidden bg-lime-500 text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-lime-400 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-flex">
                             <span className="relative z-10">우리 학원 무료 진단하기</span>
                             <span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                           </Link>
-                          <a href="#process" className="bg-white/5 text-white font-semibold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center">
+                          <a href="#process" className="bg-white/5 text-white font-semibold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl border border-zinc-700 hover:border-lime-500/50 hover:bg-white/10 transition duration-300 w-full sm:w-auto text-center flex justify-center items-center sm:inline-block">
                             작업 방식 보기 →
                           </a>
                         </motion.div>
 
             {/* 소셜 프루프 */}
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 border-t border-zinc-800 pt-6">
+            <motion.div variants={fadeUp} className="flex flex-row items-center gap-3 sm:gap-4 border-t border-zinc-800 pt-6 min-w-0">
               <div className="flex -space-x-2 flex-shrink-0">
                 {[GraduationCap, GraduationCap, Briefcase, Briefcase].map((Icon, i) => (
                   <div key={i} className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center">
@@ -335,18 +342,18 @@ const InnoUpLandingV3 = () => {
                   </div>
                 ))}
               </div>
-              <div className="text-zinc-300 text-sm leading-snug break-words min-w-0">
+              <div className="text-zinc-300 text-sm leading-snug min-w-0 [word-break:keep-all]">
                 현재 <span className="text-lime-400 font-bold">학원·교습소·교육업체</span> 등 이노업과 파트너십 중
               </div>
             </motion.div>
           </motion.div>
 
-          {/* ── 오른쪽 오비탈 비주얼 ── */}
+          {/* ── 오비탈 비주얼 (아래, 항상 텍스트 아래 중앙) ── */}
           <motion.div
-            className="flex justify-center items-center py-6 md:py-0 w-full max-w-full overflow-x-hidden"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
+            className="flex w-full min-w-0 justify-center items-center pt-2 pb-2"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.25 }}
           >
             <HeroVisual />
           </motion.div>
@@ -377,7 +384,7 @@ const InnoUpLandingV3 = () => {
           >
             {/* 텍스트 */}
             <div>
-              <motion.h2 variants={fadeUp} className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900 mb-8 leading-snug break-words">
+              <motion.h2 variants={fadeUp} className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900 mb-8 leading-snug [word-break:keep-all]">
                 &quot;마케팅 회사인데,<br />
                 왜 블로그 글이 별로 없죠?&quot;
               </motion.h2>
@@ -416,8 +423,8 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-5xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="실제 데이터 증명" dark />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug break-words px-1">말로만 하지 않습니다.</h2>
-            <p className="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed break-words px-1">실제 파트너 학원의 키워드 분석 데이터와 콘텐츠 진단 결과입니다</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug [word-break:keep-all]">말로만 하지 않습니다.</h2>
+            <p className="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed [word-break:keep-all]">실제 파트너 학원의 키워드 분석 데이터와 콘텐츠 진단 결과입니다</p>
           </motion.div>
 
           <div className="space-y-10">
@@ -429,7 +436,7 @@ const InnoUpLandingV3 = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="w-full aspect-video bg-zinc-800 border-b border-zinc-700 flex items-center justify-center text-zinc-500 text-xs sm:text-sm px-3 text-center leading-snug break-words">
+              <div className="w-full aspect-video bg-zinc-800 border-b border-zinc-700 flex items-center justify-center text-zinc-500 text-xs sm:text-sm px-3 text-center leading-snug [word-break:keep-all]">
                 [실제 타 학원 틈새 키워드 분석 엑셀 / 블로그 빨간펜 진단 캡처 이미지 삽입]
               </div>
               <div className="p-6">
@@ -448,7 +455,7 @@ const InnoUpLandingV3 = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="w-full aspect-video bg-zinc-800 border-b border-zinc-700 flex items-center justify-center text-zinc-500 text-xs sm:text-sm px-3 text-center leading-snug break-words">
+              <div className="w-full aspect-video bg-zinc-800 border-b border-zinc-700 flex items-center justify-center text-zinc-500 text-xs sm:text-sm px-3 text-center leading-snug [word-break:keep-all]">
                 [블로그 카피라이팅 전/후 체류 시간 비교 스크린샷 삽입]
               </div>
               <div className="p-6">
@@ -470,7 +477,7 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="왜 이노업인가" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug break-words px-1">숫자로 말합니다</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug [word-break:keep-all]">숫자로 말합니다</h2>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-center">
@@ -513,8 +520,8 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="이노업을 선택하는 이유" dark />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug break-words px-1">Check Point</h2>
-            <p className="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed break-words px-1">대부분의 학원 마케팅이 실패하는 이유, 이노업은 다릅니다</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug [word-break:keep-all]">Check Point</h2>
+            <p className="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed [word-break:keep-all]">대부분의 학원 마케팅이 실패하는 이유, 이노업은 다릅니다</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -522,21 +529,21 @@ const InnoUpLandingV3 = () => {
               {
                 tag: '키워드 전략',
                 title: '[엄마들의 \'새벽 검색어\' 선점]',
-                before: { label: '기존 방식', text: '' },
+                before: { label: '기존 방식', text: '대형 대행사의 기계적인 \'동네 이름 + 학원\' 키워드 도배 ➔ 경쟁에 밀려 노출조차 안 됨' },
                 after:  { label: '이노업 방식', text: '\'OO동 수학학원\' 같은 필수 간판 키워드 선점은 기본입니다. 여기에 결제 직전의 학부모가 밤잠 설치며 검색하는 틈새 키워드까지 싹 잡아냅니다.' },
                 result: '검색 유입 4주 내 3배↑',
               },
               {
                 tag: '카피라이팅',
                 title: '[뻔한 홍보글이 무시당하는 시대, \'진심\' 번역]',
-                before: { label: '기존 방식', text: '알바생이 찍어내는 글은 학부모가 3초 만에 나갑니다.' },
+                before: { label: '기존 방식', text: '"원장님 약력, 학원 시설, 커리큘럼" 단순 나열 ➔ 지루함을 느낀 학부모가 3초 만에 이탈함' },
                 after:  { label: '이노업 방식', text: '밤늦게까지 아이들을 챙기는 원장님의 진심을, 학부모가 감동하는 원고로 다듬습니다.' },
                 result: '블로그 체류시간 7.5배↑',
               },
               {
                 tag: '전환 설계',
                 title: '[조회수가 줄어도 \'전화\'는 더 많이 오게 셋팅]',
-                before: { label: '기존 방식', text: '' },
+                before: { label: '기존 방식', text: '학부모의 행동 유도 없이 그저 뻔한 정보만 주고 끝나는 포스팅 ➔ 글만 읽고 그냥 나가버림 (문의 0건)' },
                 after:  { label: '이노업 방식', text: '방문자가 줄었다고 불안해하실 필요 없습니다. 원장님의 글에 감동한 10명의 진짜 학부모가 고민 없이 바로 [전화 상담] 버튼을 누르도록 완벽한 동선을 설계합니다.' },
                 result: '월평균 신규 문의 12건↑',
               },
@@ -553,7 +560,7 @@ const InnoUpLandingV3 = () => {
                 {/* 상단 태그 */}
                 <div className="px-4 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-zinc-800">
                   <span className="inline-block bg-lime-500/15 text-lime-400 border border-lime-500/30 text-xs font-semibold px-3 py-1 rounded-full mb-3">{tag}</span>
-                  <h3 className="text-white font-bold text-base sm:text-lg leading-snug break-words">{title}</h3>
+                  <h3 className="text-white font-bold text-base sm:text-lg leading-snug [word-break:keep-all]">{title}</h3>
                 </div>
 
                 {/* Before */}
@@ -562,7 +569,7 @@ const InnoUpLandingV3 = () => {
                     <span className="text-[10px] font-bold bg-zinc-700 text-zinc-400 px-2 py-0.5 rounded">BEFORE</span>
                     <span className="text-zinc-500 text-[11px]">{before.label}</span>
                   </div>
-                  <p className="text-zinc-500 text-sm leading-relaxed line-through decoration-zinc-600 break-words">{before.text}</p>
+                  <p className="text-zinc-500 text-sm leading-relaxed line-through decoration-zinc-600 [word-break:keep-all]">{before.text}</p>
                 </div>
 
                 {/* After */}
@@ -571,7 +578,7 @@ const InnoUpLandingV3 = () => {
                     <span className="text-[10px] font-bold bg-lime-500/20 text-lime-400 px-2 py-0.5 rounded">AFTER</span>
                     <span className="text-lime-600 text-[11px]">{after.label}</span>
                   </div>
-                  <p className="text-zinc-200 text-sm leading-relaxed break-words">{after.text}</p>
+                  <p className="text-zinc-200 text-sm leading-relaxed [word-break:keep-all]">{after.text}</p>
                 </div>
 
                 {/* 결과 */}
@@ -590,7 +597,7 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="작업 프로세스" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug break-words px-1">How We Work</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug [word-break:keep-all]">How We Work</h2>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -612,8 +619,8 @@ const InnoUpLandingV3 = () => {
                 {i < 3 && <div className="hidden md:block absolute top-10 -right-3 w-6 h-px bg-stone-300 z-10" />}
                 <div className="text-3xl sm:text-5xl font-extrabold text-stone-200 group-hover:text-lime-100 transition mb-3 sm:mb-4 leading-none select-none">{step}</div>
                 <div className="w-8 h-1 bg-lime-500 rounded-full mb-3 sm:mb-4" />
-                <h3 className="font-bold text-sm sm:text-lg text-zinc-900 mb-2 leading-snug break-words">{title}</h3>
-                <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed break-words">{desc}</p>
+                <h3 className="font-bold text-sm sm:text-lg text-zinc-900 mb-2 leading-snug [word-break:keep-all]">{title}</h3>
+                <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed [word-break:keep-all]">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -625,7 +632,7 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="실제 성과" dark />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug break-words px-1">Portfolio</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug [word-break:keep-all]">Portfolio</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -686,8 +693,8 @@ const InnoUpLandingV3 = () => {
           >
             <div>
               <div className="text-lime-400 text-xs font-bold tracking-widest uppercase mb-2">3분 무료 진단</div>
-              <h3 className="text-white font-bold text-lg sm:text-xl mb-1 leading-snug break-words">우리 학원도 이런 결과가 가능할까요?</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed break-words">8가지 질문으로 지금 당장 확인해보세요.</p>
+              <h3 className="text-white font-bold text-lg sm:text-xl mb-1 leading-snug [word-break:keep-all]">우리 학원도 이런 결과가 가능할까요?</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed [word-break:keep-all]">8가지 질문으로 지금 당장 확인해보세요.</p>
             </div>
             <Link
               to="/quiz"
@@ -704,7 +711,7 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
             <SectionLabel text="파트너 후기" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug break-words px-1">원장님들의 이야기</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-snug [word-break:keep-all]">원장님들의 이야기</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -768,17 +775,16 @@ const InnoUpLandingV3 = () => {
               이번 달 잔여 5자리
             </motion.div>
 
-            <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-6 leading-snug sm:leading-tight break-words px-1">
-              우리 동네 경쟁 학원,<br />
-              <span className="text-lime-400">제가 대신 분석해 드립니다.</span>
+            <motion.h2 variants={fadeUp} className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-6 leading-snug sm:leading-tight [word-break:keep-all]">
+              우리 동네 마케팅 정답, 무료로 진단해 드립니다.
             </motion.h2>
 
-            <motion.p variants={fadeUp} className="text-zinc-400 text-base sm:text-lg leading-relaxed sm:leading-loose mb-10 break-words px-1">
-              시대가 변했습니다. 대형 대행사도 모르는 우리 동네 맞춤형 마케팅 정답, 단 3분 만에 무료로 진단해 드립니다.
+            <motion.p variants={fadeUp} className="text-zinc-400 text-base sm:text-lg leading-relaxed sm:leading-loose mb-10 [word-break:keep-all]">
+              시대가 변했습니다. 대행사도 모르는 우리 학원의 진짜 문제점, 단 3분 만에 확인해 보세요.
             </motion.p>
 
             {/* 혜택 목록 */}
-            <motion.ul variants={fadeUp} className="inline-flex flex-col items-start gap-3 mb-12 text-left">
+            <motion.ul variants={fadeUp} className="mx-auto flex w-max max-w-full flex-col items-start gap-3 mb-12 text-left">
               {[
                 '우리 학원 경쟁 현황 키워드 분석',
                 '현재 블로그·콘텐츠 빨간펜 진단',
@@ -795,16 +801,16 @@ const InnoUpLandingV3 = () => {
             </motion.ul>
 
             {/* 메인 CTA 버튼 */}
-            <motion.div variants={fadeUp}>
+            <motion.div variants={fadeUp} className="flex flex-col items-center">
               <Link
                 to="/quiz"
-                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-yellow-400 text-neutral-950 font-black text-base sm:text-lg py-4 sm:py-5 px-8 sm:px-12 rounded-2xl shadow-2xl hover:bg-yellow-300 transition duration-300 overflow-hidden w-full max-w-md sm:max-w-none sm:w-auto"
+                className="group relative flex w-full max-w-md sm:max-w-none items-center justify-center gap-2 sm:gap-3 bg-yellow-400 text-neutral-950 font-black text-base sm:text-lg py-4 sm:py-5 px-8 sm:px-12 rounded-2xl shadow-2xl hover:bg-yellow-300 transition duration-300 overflow-hidden sm:inline-flex sm:w-auto"
               >
                 <span className="relative z-10">무료 진단 신청하기</span>
                 <span className="relative z-10 text-xl">→</span>
                 <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
               </Link>
-              <p className="text-zinc-600 text-xs mt-4">※ 테스트 완료 후 24시간 내 맞춤 전략을 제안해드립니다.</p>
+              <p className="text-zinc-600 text-xs mt-4 text-center">※ 테스트 완료 후 24시간 내 맞춤 전략을 제안해드립니다.</p>
             </motion.div>
           </motion.div>
         </div>
@@ -813,7 +819,7 @@ const InnoUpLandingV3 = () => {
         <div className="max-w-3xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-14">
             <SectionLabel text="자주 묻는 질문" dark />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug break-words px-1">FAQ</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug [word-break:keep-all]">FAQ</h2>
           </motion.div>
 
           <div className="bg-zinc-800/50 rounded-2xl px-4 sm:px-8 py-4 border border-zinc-700">
